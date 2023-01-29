@@ -1,6 +1,7 @@
 .PHONY: up dev test e2e
 init:
 	yarn global add dotenv-cli
+	cp .env.example .env
 up:
 	rm -rf node_modules dist
 	yarn install
