@@ -6,4 +6,4 @@ import { ReportsModules } from './reports/reports.module'
 @Module({
   imports: [ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env'] }), ReportsModules],
 })
-export class ClosedApiModules {}
+export class AppModules {}

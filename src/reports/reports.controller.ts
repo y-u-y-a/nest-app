@@ -1,7 +1,7 @@
 import { Body, Controller, Delete, Get, Param, ParseUUIDPipe, Post } from '@nestjs/common'
 
-import { CreateReportDto } from './dto/createReport.dto'
-import { Report } from './report.model'
+import { CreateReportDto } from './domain/createReport.dto'
+import { Report } from './domain/report.model'
 import { ReportService } from './reports.service'
 
 @Controller('reports')

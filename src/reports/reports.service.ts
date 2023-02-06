@@ -1,8 +1,8 @@
 import { Injectable, NotFoundException } from '@nestjs/common'
 import { v4 as uuid } from 'uuid'
 
-import { CreateReportDto } from './dto/createReport.dto'
-import { Report } from './report.model'
+import { CreateReportDto } from './domain/createReport.dto'
+import { Report } from './domain/report.model'
 
 @Injectable()
 export class ReportService {
