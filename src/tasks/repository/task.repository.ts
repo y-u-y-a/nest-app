@@ -1,9 +1,9 @@
 import { Injectable } from '@nestjs/common'
 
-import { Task } from './domain/task.entity'
+import { Task } from '../domain/task.entity'
 
 @Injectable()
-export class TaskService {
+export class TaskRepository {
   private tasks: Task[] = []
 
   findAll(): Task[] {

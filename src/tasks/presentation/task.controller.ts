@@ -1,16 +1,16 @@
 import { Controller, Get } from '@nestjs/common'
 
-import { TaskService } from '../task.service'
+import { TaskRepository } from '../repository/task.repository'
 
 import { FindAllTasksResponseDto } from './task.dto'
 
 @Controller('tasks')
 export class TaskController {
-  constructor(private readonly taskService: TaskService) {}
+  constructor(private readonly taskRepository: TaskRepository) {}
 
   @Get()
   async findAll(): Promise<FindAllTasksResponseDto> {
-    const tasks = this.taskService.findAll()
+    const tasks = this.taskRepository.findAll()
 
     return new FindAllTasksResponseDto(tasks)
   }
