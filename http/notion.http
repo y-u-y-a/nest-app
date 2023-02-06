@@ -1,0 +1,40 @@
+POST https://api.notion.com/v1/pages
+Content-Type: application/json
+Notion-Version: 2021-08-16
+Authorization: Bearer secret_NT6kHzwf27SCalPXD51vTnJu6HLP7P2LH6biSnSFPOh
+
+{
+  "parent": {
+    "database_id": "eea9f50dfdd44f37bf93fff833d47ff0"
+  },
+  "properties": {
+    "日付": {
+      "title": [
+        {
+          "text": {
+            "content": "Date"
+          }
+        }
+      ]
+    },
+    "昨日したこと": {
+      "rich_text": [
+        {
+          "text": {
+            "content": "テストを完了した"
+          }
+        }
+      ]
+    },
+    "今日やること": {
+      "rich_text": [
+        {
+          "text": {
+            "content": "TODOの準備をする"
+          }
+        }
+      ]
+    }
+  }
+}
+
