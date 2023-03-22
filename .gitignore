@@ -37,3 +37,4 @@ lerna-debug.log*
 .env
 sample.json
 db/data
+.secret

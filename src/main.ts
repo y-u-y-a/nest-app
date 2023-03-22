@@ -11,9 +11,9 @@ async function closedApiServer() {
 
   switch (process.env.DEV_ENV) {
     case DEV_ENV.LOCAL:
-      return console.log(`Connected！\n Test call to http://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
+      return console.log(`Connected！\n Call to http://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
     case DEV_ENV.DEVELOP:
-      return console.log(`Connected！\n Test call to https://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
+      return console.log(`Connected！\n Call to https://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
     default:
       throw new Error('サーバー起動に失敗しました')
   }
