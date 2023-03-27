@@ -10,7 +10,10 @@ export class TestController {
     return 'Success!'
   }
 
-  @Post()
+  /**
+   * Import users into Identity platform
+   */
+  @Post('idp')
   async post(@Body() body: { tenantId: string }): Promise<void> {
     try {
       admin.initializeApp({
