@@ -1,3 +1,4 @@
+import { Logging } from '@google-cloud/logging'
 import { HttpService } from '@nestjs/axios'
 import { Body, Controller, Get, Post } from '@nestjs/common'
 import admin from 'firebase-admin'
@@ -5,14 +6,30 @@ import admin from 'firebase-admin'
 @Controller('test')
 export class TestController {
   constructor(private readonly httpService: HttpService) {}
-  @Get()
+  @Get('logging')
   async get(): Promise<string> {
+    const logName = 'test-log'
+    const logging = new Logging({ projectId: 'yuya-dev' })
+
+    // Selects the log to write to
+    const log = logging.log(logName)
+
+    // The metadata associated with the entry
+    // Prepares a log entry
+    const entry = log.entry(
+      {
+        resource: { type: 'global' },
+        // See: https://cloud.google.com/logging/docs/reference/v2/rest/v2/LogEntry#logseverity
+        severity: 'ERROR',
+      },
+      'Error!!!!!!',
+    )
+    // Writes the log entry
+    await log.write(entry)
     return 'Success!'
   }
 
-  /**
-   * Import users into Identity platform
-   */
+  /** Import users into Identity platform */
   @Post('idp')
   async post(@Body() body: { tenantId: string }): Promise<void> {
     try {
