@@ -3,19 +3,17 @@ import { HttpService } from '@nestjs/axios'
 import { Body, Controller, Get, Post } from '@nestjs/common'
 import admin from 'firebase-admin'
 
+const PROJECT_ID = 'yuya-dev'
+
 @Controller('test')
 export class TestController {
   constructor(private readonly httpService: HttpService) {}
   @Get('logging')
   async get(): Promise<string> {
-    const logName = 'test-log'
-    const logging = new Logging({ projectId: 'yuya-dev' })
+    const tenantName = 'commune'
+    const logging = new Logging({ projectId: PROJECT_ID })
 
-    // Selects the log to write to
-    const log = logging.log(logName)
-
-    // The metadata associated with the entry
-    // Prepares a log entry
+    const log = logging.log(tenantName)
     const entry = log.entry(
       {
         resource: { type: 'global' },
