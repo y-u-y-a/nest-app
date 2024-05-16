@@ -1,10 +1,10 @@
-import { Module } from '@nestjs/common'
-import { ConfigModule } from '@nestjs/config'
-
-import { ReportsModules } from './reports/reports.module'
-import { TestModules } from './test/test.module'
+import { Module } from "@nestjs/common"
+import { UsersModule } from "./users/users.module"
 
 @Module({
-  imports: [ConfigModule.forRoot({ isGlobal: true, envFilePath: ['.env'] }), TestModules, ReportsModules],
+  // imports: [ConfigModule.forRoot({ isGlobal: true, envFilePath: [".env"] }), UsersModule],
+  imports: [UsersModule],
+  controllers: [],
+  providers: [],
 })
-export class AppModules {}
+export class AppModule {}

@@ -1,22 +1,18 @@
-import { ValidationPipe } from '@nestjs/common'
-import { NestFactory } from '@nestjs/core'
+import { NestFactory } from "@nestjs/core"
 
-import { AppModules } from './app.module'
-import { DEV_ENV } from './const'
+import { AppModule } from "./app.module"
 
-async function closedApiServer() {
-  const server = await NestFactory.create(AppModules)
-  server.useGlobalPipes(new ValidationPipe())
-  await server.listen(process.env.CLOSED_API_SERVER_PORT)
-
-  switch (process.env.DEV_ENV) {
-    case DEV_ENV.LOCAL:
-      return console.log(`Connected！\n Call to http://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
-    case DEV_ENV.DEVELOP:
-      return console.log(`Connected！\n Call to https://localhost:${process.env.CLOSED_API_SERVER_PORT}/test`)
-    default:
-      throw new Error('サーバー起動に失敗しました')
+async function apiServer() {
+  try {
+    const SERVER_POST = 8000
+    const server = await NestFactory.create(AppModule)
+    // server.useGlobalPipes(new ValidationPipe())
+    await server.listen(SERVER_POST)
+    // console.info(`Success to http://localhost:${SERVER_POST}/test ...`)
+  } catch (error) {
+    console.error("サーバー起動に失敗しました", error)
+    throw new Error("サーバー起動に失敗しました")
   }
 }
 
-closedApiServer()
+apiServer()

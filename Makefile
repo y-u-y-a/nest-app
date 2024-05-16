@@ -1,18 +1,15 @@
 include .env
 
 .PHONY: up dev test e2e
-init:
-	yarn global add dotenv-cli
-	cp .env.example .env
 up:
 	rm -rf node_modules dist
-	yarn install
+	pnpm install
 dev:
-	yarn start:dev
+	pnpm start:dev
 test:
-	yarn lint && yarn test
+	pnpm lint && pnpm test
 e2e:
-	yarn test:e2e
+	pnpm test:e2e
 
 freee:
 	curl -i -X POST \
