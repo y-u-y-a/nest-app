@@ -27,6 +27,7 @@
 
 ```shell:
 $ make up
+$ pnpm dev # https://localhost:8000 ...
 ```
 
 ## Trouble shooting
