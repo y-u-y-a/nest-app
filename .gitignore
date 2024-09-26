@@ -38,3 +38,5 @@ lerna-debug.log*
 sample.json
 db/data
 .secret
+.vercel
+.env.development.local
