@@ -2,7 +2,7 @@ import { Body, Controller, Get, Param, Post, Query } from "@nestjs/common"
 import { sql } from "@vercel/postgres"
 import { User } from "./user.model"
 
-type Pagination = {
+type Paging = {
   total: number // 総アイテム数
   currentPage: number // 現在のページ
   totalPages: number // 総ページ数
@@ -14,12 +14,12 @@ export class UsersController {
   // constructor(private readonly usersService: UsersService) {}
 
   @Get()
-  async getByPaging(@Query("currentPage") page: string, @Query("email") email: string): Promise<{ users: User[]; paging: Pagination }> {
+  async getByPaging(@Query("currentPage") page: string, @Query("email") email: string): Promise<{ users: User[]; paging: Paging }> {
     const currentPage = Number(page)
     const limit = 4
     const offset = limit * (currentPage - 1)
     const { rows } = await sql<{ count: number }>`SELECT COUNT(*) FROM users WHERE email LIKE ${`%${email}%`};`
-    const { rows: users } = await sql<User>`SELECT * FROM users WHERE email LIKE ${`%${email}%`} LIMIT ${limit} OFFSET ${offset};`
+    const { rows: users } = await sql<User>`SELECT * FROM users WHERE email LIKE ${`%${email}%`} ORDER BY id ASC LIMIT ${limit} OFFSET ${offset};`
 
     return {
       users,
